@@ -14,11 +14,11 @@ In this example, we will create a **JFXCalendar** in which the data will be of t
 JFXCalendar<String> calendar = new JFXCalendar<>();
 ```
 
-Если использовать конструктор по умолчанию, то месяц, отображаемый в календаре будет взят из текущей даты.
+If you use the default constructor, then the month displayed in the calendar will be taken from the current date.
 
 ![Default constructor](https://i.imgur.com/qSwO1Ta.png)
 
-Конечно, можно использовать другой конструктор и передать необходимый месяц и год.
+Of course, you can use another constructor and pass in the desired month and year.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>(Month.OCTOBER, 2023);
@@ -27,7 +27,7 @@ JFXCalendar<String> calendar = new JFXCalendar<>(Month.OCTOBER, 2023);
 ![Constructor with month and year](https://i.imgur.com/qAd2LA4.png)
 
 # Set data
-Вы можете установить данные для определенных дней, при этом дни будут отмечены.
+You can set data for specific days, and the days will be marked.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -41,7 +41,7 @@ calendar.setData(data);
 ![Set data](https://i.imgur.com/NGgrB44.png)
 
 # Get data
-Можно получить данные установленные в определенный день.
+You can get the data set on a specific day.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -54,7 +54,7 @@ Optional<JFXCalendarData<String>> data1 = calendarView.getData(LocalDate.of(2022
 ```
 
 # Set start day of week
-По умолчанию началом недели считается понедельник, но это можно настроить.
+The default start of the week is Monday, but this can be configured.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -64,7 +64,7 @@ calendar.setStartDayOfWeek(DayOfWeek.WEDNESDAY);
 ![Set start day of week](https://i.imgur.com/VkpMXtV.png)
 
 # Set weekends
-По умолчанию в качестве выходных установлены суббота и воскресенье, но это можно настроить.
+By default, Saturday and Sunday are set as holidays, but this can be configured.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -74,7 +74,7 @@ calendar.setWeekends(DayOfWeek.WEDNESDAY, DayOfWeek.FRIDAY);
 ![Set weekends](https://i.imgur.com/n77wvKM.png)
 
 # Set multiple selection
-По умолчанию можно выбрать только один день, кликнув на него, но можно включить множественный выбор.
+By default, only one day can be selected by clicking on it, but multiple selection can be enabled.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -84,13 +84,13 @@ calendar.setMultipleSelection(true);
 ![Set multiple selection](https://i.imgur.com/svlhg4t.png)
 
 # Edit year
-Чтобы изменить год необходимо нажать на него, ввести новые данные и нажать **Enter**, чтобы применить изменения
-или нажать **Esc**, чтобы отменить изменения.
+To change the year, you must click on it, enter new data and press **Enter** to apply the changes
+or press **Esc** to cancel changes.
 
 ![Edit year](https://i.imgur.com/miKPIDT.png)
 
 # Get selected dates
-Чтобы получить выбранные дни, необходимо вызвать метод **getSelectedDates**.
+To get the selected days, you need to call the `getSelectedDates` method.
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -98,7 +98,7 @@ Set<LocalDate> selectedDates = calendar.getSelectedDates();
 ```
 
 # Listen selected day
-Чтобы подписаться на событие изменения выбранного дня необходимо:
+To subscribe to the change event of the selected day:
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -108,7 +108,7 @@ calendar.selectedDateProperty().addListener((observable, oldValue, newValue) -> 
 ```
 
 # Listen selected year
-Чтобы подписаться на событие изменения выбранного года необходимо:
+To subscribe to the change event of the selected year:
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -118,7 +118,7 @@ calendar.selectedYearProperty().addListener((observable, oldValue, newValue) -> 
 ```
 
 # Listen selected month
-Чтобы подписаться на событие изменения выбранного месяца необходимо:
+To subscribe to the change event of the selected month:
 
 ```
 JFXCalendar<String> calendar = new JFXCalendar<>();
@@ -127,5 +127,5 @@ calendar.selectedMonthProperty().addListener((observable, oldValue, newValue) ->
 });
 ```
 
-**Обратите внимание**, что в качестве значения используется `LocalDate`, 
-так как необходимо знать не только месяц, но и год, а день всегда будет 1.
+**Please note** that `LocalDate` is used as the value,
+since it is necessary to know not only the month, but also the year, and the day will always be 1.
