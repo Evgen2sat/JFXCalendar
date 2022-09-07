@@ -1,11 +1,13 @@
 package em.libs.jfxcalendar;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,16 +18,29 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
     private DayOfWeek startDayOfWeek = DayOfWeek.MONDAY;
     private final Set<DayOfWeek> weekends = new HashSet<>(Arrays.asList(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY));
     private final SimpleObjectProperty<Optional<LocalDate>> selectedDate = new SimpleObjectProperty<>(Optional.ofNullable(null));
+    private final SimpleIntegerProperty selectedYear = new SimpleIntegerProperty(year);
+    private final SimpleObjectProperty<LocalDate> selectedMonth = new SimpleObjectProperty<>(LocalDate.of(year, month, 1));
     private final Map<String, JFXCalendarData<T>> data = new TreeMap<>();
     private boolean multipleSelection;
     private final Set<StackPane> selectedDayPanels = new HashSet<>();
     private StackPane previousSelectedPanel;
 
-    public JFXCalendar(int month, int year) {
-        this.month = month;
+    public JFXCalendar(Month month, int year) {
+        if (month == null) {
+            throw new RuntimeException("Month is null");
+        }
+
+        if (year < 0) {
+            throw new RuntimeException("Year is negative");
+        }
+
+        this.month = month.getValue();
         this.year = year;
 
-        initNewCalendar(month, year, startDayOfWeek, weekends, data);
+        selectedYear.set(year);
+        selectedMonth.set(LocalDate.of(year, month, 1));
+
+        initNewCalendar(this.month, year, startDayOfWeek, weekends, data);
     }
 
     public JFXCalendar() {
@@ -41,6 +56,7 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
             year++;
         }
 
+        selectedMonth.set(LocalDate.of(year, month, 1));
         initNewCalendar(month, year, startDayOfWeek, weekends, data);
     }
 
@@ -53,6 +69,7 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
             year--;
         }
 
+        selectedMonth.set(LocalDate.of(year, month, 1));
         initNewCalendar(month, year, startDayOfWeek, weekends, data);
     }
 
@@ -111,6 +128,14 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
         return selectedDate;
     }
 
+    public SimpleIntegerProperty selectedYearProperty() {
+        return selectedYear;
+    }
+
+    public SimpleObjectProperty<LocalDate> selectedMonthProperty() {
+        return selectedMonth;
+    }
+
     public void setData(List<JFXCalendarData<T>> data) {
         clearData();
 
@@ -121,7 +146,7 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
         initNewCalendar(month, year, startDayOfWeek, weekends, this.data);
     }
 
-    public void clearData() {
+    private void clearData() {
         this.data.clear();
     }
 
@@ -167,6 +192,7 @@ public class JFXCalendar<T> extends JFXCalendarDesigner<T> {
     protected void selectedYear(Integer newValue) {
         year = newValue;
 
+        selectedYear.set(year);
         initNewCalendar(month, year, startDayOfWeek, weekends, data);
     }
 }
