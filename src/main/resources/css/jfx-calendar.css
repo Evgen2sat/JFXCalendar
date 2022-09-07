@@ -1,0 +1,60 @@
+.calendar-background {
+    -fx-background-color: WHITE;
+}
+
+.calendar-year {
+    -fx-text-fill: BLACK;
+    -fx-font-size: 1.85em;
+}
+
+.calendar-month {
+    -fx-text-fill: BLACK;
+    -fx-font-size: 1.85em;
+}
+
+.calendar-month-arrow {
+    -fx-text-fill: #707070;
+    -fx-font-size: 2.14em;
+}
+
+.calendar-day-of-week {
+    -fx-text-fill: #9e9e9e;
+    -fx-font-size: 1.43em;
+}
+
+.calendar-day {
+    -fx-text-fill: BLACK;
+    -fx-font-size: 1.43em;
+}
+
+.calendar-current-day {
+    -fx-text-fill: WHITE;
+    -fx-font-size: 1.43em;
+}
+
+.calendar-current-day-panel {
+    -fx-background-color: -primary-color;
+}
+
+.calendar-weekend-panel {
+    -fx-background-color: #F5F5F5;
+}
+
+.calendar-selected-day-panel {
+    -fx-border-color: BLACK;
+    -fx-border-width: 1;
+}
+
+.calendar-data-day-pane {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 100;
+}
+
+.calendar-data-current-day-pane {
+    -fx-background-color: WHITE;
+    -fx-background-radius: 100;
+}
+
+.text-field {
+    -fx-font-size: 1.5em;
+}
