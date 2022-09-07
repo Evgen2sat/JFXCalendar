@@ -5,7 +5,27 @@ JavaFX Calendar with additional functions
 **JFXCalendar** is a simple JavaFX calendar that allows you to set/get data in the calendar, 
 set the start day of the week (Monday by default) and set weekend days (Saturday and Sunday by default).
 
-#Get started
+# Before use
+The calendar style uses the `-primary-color` variable, which is not defined in this project.
+`-primary-color` is used for selected days and days that have data. To display styles
+it is correct to create a `css` that defines this variable and set it to a direct value.
+
+For example, let's create a file, `colors.css` and put it in resources:
+```
+* {
+    -primary-color: #1976D2;
+}
+```
+
+Let's add this style to our calendar:
+```
+JFXCalendar<String> calendar = new JFXCalendar<>();
+calendar.getStylesheets().add(JFXCalendar.class.getResource("/colors.css").toExternalForm());
+```
+
+In the following sections, the addition of `css` is omitted and assumes that you have added it.
+
+# Get started
 Create a **JFXCalendar** object and you're done.
 
 In this example, we will create a **JFXCalendar** in which the data will be of the String type.
